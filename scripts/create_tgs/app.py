@@ -19,7 +19,10 @@ time_groups_names = [
     "15:50",
     "16:10",
     "16:20",
-    "16:30"
+    "16:30",
+    "16:40",
+    "16:50",
+    "17:00",
 ]
 
 for tg_name in time_groups_names:
