@@ -4,6 +4,10 @@ import os
 API_URL = os.getenv("API_URL")
 TG_CAPACITY = os.getenv("TG_CAPACITY")
 EVENT_ID = os.getenv("EVENT_ID")
+API_ACCESS_TOKEN = os.getenv("API_ACCESS_TOKEN")
+if API_ACCESS_TOKEN is None:
+    raise ValueError("API_ACCESS_TOKEN environment variable is not set")
+
 time_groups_names = [
     "14:00",
     "14:10",
@@ -17,6 +21,7 @@ time_groups_names = [
     "15:30",
     "15:40",
     "15:50",
+    "16:00",
     "16:10",
     "16:20",
     "16:30",
@@ -28,6 +33,11 @@ time_groups_names = [
 for tg_name in time_groups_names:
     response = requests.post(
         url=API_URL + "/ticket_groups/",
+        headers={
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": f"Bearer {API_ACCESS_TOKEN}",
+        },
         json={
             "name": tg_name,
             "capacity": TG_CAPACITY,
